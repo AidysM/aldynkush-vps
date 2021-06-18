@@ -26,7 +26,7 @@ SECRET_KEY = 'umu1VbMOHwv15X4b4zwPxfOuMLUhumZeuuV6DNk2iLJYcHlGalR6aSh07z25PWI0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['89.108.64.179', '2a00:f940:2:4:2::2113', '89-108-64-179.cloudvps.regruhosting.ru']
+ALLOWED_HOSTS = ['89.108.64.179', '127.0.0.1', '2a00:f940:2:4:2::2113', '89-108-64-179.cloudvps.regruhosting.ru', 'aldynkushkash.ru']
 
 # Application definition
 
@@ -59,7 +59,7 @@ ROOT_URLCONF = 'django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,10 +116,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 #TIME_ZONE = 'UTC'
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Asia/Krasnoyarsk'
 
 USE_I18N = True
 USE_L10N = True
@@ -129,9 +129,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static/'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 SITE_ID = 1

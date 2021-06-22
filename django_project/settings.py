@@ -26,7 +26,7 @@ SECRET_KEY = 'umu1VbMOHwv15X4b4zwPxfOuMLUhumZeuuV6DNk2iLJYcHlGalR6aSh07z25PWI0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['89.108.64.179', '127.0.0.1', '2a00:f940:2:4:2::2113', '89-108-64-179.cloudvps.regruhosting.ru', 'aldynkushkash.ru']
+ALLOWED_HOSTS = ['aldynkushkash.ru', 'www.aldynkushkash.ru', '89.108.64.179', '127.0.0.1', '2a00:f940:2:4:2::2113', '89-108-64-179.cloudvps.regruhosting.ru', 'localhost']
 
 # Application definition
 

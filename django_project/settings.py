@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'django_filters',
+    'allauth',
+    'allauth.account', 
+    'allauth.socialaccount', 
+    'allauth.socialaccount.providers.google', 
     'fpages',
 ]
 
@@ -73,6 +78,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -138,3 +151,47 @@ STATICFILES_DIRS = [
 ]
 
 SITE_ID = 1
+
+LOGIN_URL = 'accounts/login/'
+# LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+EMAIL_HOST = 'smtp.yandex.ru' # адрес сервера Яндекс-почты для всех один и тот же
+EMAIL_PORT = 465 # порт smtp сервера тоже одинаковый
+EMAIL_HOST_USER = 'admin@aldynkushkash.ru' # ваше имя пользователя, например 
+    # если ваша почта user@yandex.ru, то сюда надо писать user, иными 
+    # словами, это всё то что идёт до собаки
+EMAIL_HOST_PASSWORD = '10011979Ak' # пароль от почты
+EMAIL_USE_SSL = True # Яндекс использует ssl, подробнее о том, что это, 
+    # почитайте на Википедии, но включать его здесь обязательно
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '987781668580-bo3ccs6ea90gvch9oqekf142fr3r20sb.apps.googleusercontent.com',
+            'secret': 'eqdPnY6N0PLSeD3hYXGgQ3lI',
+            'key': ''
+        }
+    }
+}
+
+ADMINS = [
+    ('Aidys', 'admin@aldynkushkash.ru'),
+    # список всех админов в формате ('имя', 'их почта')
+]
+MANAGERS = [
+    ('Shoyun A.S.', 'glavred@aldynkushkash.ru'),
+    # список всех менеджеров в формате ('имя', 'их почта')
+]
+SERVER_EMAIL = 'server@aldynkushkash.ru' # это будет у нас вместо аргумента FROM в массовой рассылке

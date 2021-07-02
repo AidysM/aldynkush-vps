@@ -1,0 +1,24 @@
+{% extends 'flatpages/default.html' %}
+
+{% block <title> %}
+    Новости
+{% endblock %}
+
+{% block content %}
+    <h1>Страница всех новостей</h1>
+    <hr>
+    {% if news %}
+        <ul class="list-unstyled">
+            {% for new in news %}
+                <li class="media my-5 p-3 border">
+                    
+                    <div class="media-body">
+                        <h2><a href="{{ url }}{{ all }}">{{ new.title }}</a> </h2>
+                        <div>{{ new.content }}</div>
+                        <p class="text-right font-italic">{{ new.created }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

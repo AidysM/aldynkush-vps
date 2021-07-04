@@ -23,9 +23,11 @@ urlpatterns = [
     path('about/', views.flatpage, {'url': '/about/'}, name='about'),
     path('subscription/', views.flatpage, {'url': '/subscription/'}, name='subscription'),
     path('contact/', views.flatpage, {'url': '/contact/'}, name='contact'),
-        
-    path('accounts/', include('allauth.urls')),
-
     path('news/', include('news.urls')),
-    path('', include('home.urls')),
+    path('shop/', include('shop.urls', namespace='shop')),
+    path('home/', include('home.urls')),
+    path('', include('protect.urls')),
+    path('sign/', include('sign.urls')),
+    path('accounts/', include('allauth.urls')), 
+    
 ]

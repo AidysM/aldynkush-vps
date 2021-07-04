@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+    {{ new.title }}
+{% endblock title %}
+
+{% block content %}
+    <h2>Вы действительно хотите удалить данную запись?</h2>
+    <h2>{{ new.title }}</h2>
+    {{ new.content }}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="удалить">
+    </form>
+{% endblock content %}

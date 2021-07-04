@@ -46,7 +46,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google', 
     'fpages',
     'home',
-    'news',
+    'news.apps.NewsConfig',
+    'sign',
+    'protect',
+    'shop.apps.ShopConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -155,7 +159,7 @@ STATICFILES_DIRS = [
 SITE_ID = 1
 
 LOGIN_URL = 'accounts/login/'
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True

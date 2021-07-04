@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'sign',
     'protect',
     'shop.apps.ShopConfig',
-    
+    'cart.apps.CartConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -78,6 +79,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                'news.middlewares.gb_context_processor',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -201,3 +205,5 @@ MANAGERS = [
     # список всех менеджеров в формате ('имя', 'их почта')
 ]
 SERVER_EMAIL = 'server@aldynkushkash.ru' # это будет у нас вместо аргумента FROM в массовой рассылке
+
+CART_SESSION_ID = 'cart'

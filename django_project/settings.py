@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from pathlib import Path
+import braintree
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'allauth.account', 
     'allauth.socialaccount', 
     'allauth.socialaccount.providers.google', 
+    'django_cleanup',
+    'easy_thumbnails',
     'fpages',
     'home',
     'news.apps.NewsConfig',
@@ -51,7 +54,8 @@ INSTALLED_APPS = [
     'protect',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
-
+    'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -160,6 +164,21 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'defaults': {
+            'size': (96, 96),
+            'crop': 'scale',
+        },
+    },
+}
+
+THUMBNAIL_BASEDIR = 'thumbnails'
+
 SITE_ID = 1
 
 LOGIN_URL = 'accounts/login/'
@@ -207,3 +226,29 @@ MANAGERS = [
 SERVER_EMAIL = 'server@aldynkushkash.ru' # это будет у нас вместо аргумента FROM в массовой рассылке
 
 CART_SESSION_ID = 'cart'
+
+# REDIS settings
+# Настройки Redis условные и у вас они могут отличатся в зависимости от конфигурации
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = '6379'
+REDIS_PASSWORD = '' #'O0bwn88ETW1xfA4xEEt3q7DZLxCXNil6+bkmrqkQ0GKGt7+JQ+rua46Y5AZNYOSbabah3catsVIo4VDF'
+
+# CELERY settings
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTION = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'j88ydr84fsptwczp'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = '7zwk5w2yzt49mb7x'  # Public Key
+BRAINTREE_PRIVATE_KEY = 'cdaf62bbddd902861096340df243e7a0'  # Private Key
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)

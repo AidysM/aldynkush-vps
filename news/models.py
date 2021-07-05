@@ -13,7 +13,12 @@ class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.author    
+        return self.author 
+    
+    def delete(self, *args, **kwargs):
+        for new in self.new_set.all():
+            new.delete()
+        super().delete(*args, **kwargs)
 
 
 class Rubric(models.Model):

@@ -26,6 +26,9 @@ class SubRubricAdmin(admin.ModelAdmin):
 admin.site.register(SubRubric, SubRubricAdmin)
 
 
+class AdditionalImageInline(admin.TabularInline):
+    model = AdditionalImage
+
 @admin.register(New)
 class NewAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish', 'status')
@@ -35,9 +38,10 @@ class NewAdmin(admin.ModelAdmin):
     raw_id_fields = ('author',)
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
+    imlines = (AdditionalImageInline,)
 
 
-admin.site.register(AdditionalImage)
+# admin.site.register(AdditionalImage)
 
 
 admin.site.register(Comment)

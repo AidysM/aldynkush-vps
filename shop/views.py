@@ -6,15 +6,15 @@ from cart.forms import CartAddProductForm
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    product = Product.objects.filter(available=True)
+    products = Product.objects.filter(available=True)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        product = product.filter(category=category)
+        products = products.filter(category=category)
     return render(request,
                   'shop/product/list.html',
                   {'category': category,
                    'categories': categories,
-                   'product': product})
+                   'products': products})
 
 
 def product_detail(request, id, slug):

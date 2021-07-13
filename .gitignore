@@ -113,4 +113,8 @@ doodle/
 
 node_modules/
 package-lock.json
+<<<<<<< HEAD
 static/js/
+=======
+static/js/
+>>>>>>> 1f870269437836ae4d5f9917bfd5be9619f12b4c

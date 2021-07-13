@@ -1,5 +1,7 @@
 {% extends 'flatpages/default.html' %}
 
+{% load static %}
+
 {% block <title> %}
     News
 {% endblock %}
@@ -13,6 +15,8 @@
                 <li class="media my-5 p-3 border">
                     
                     <div class="media-body">
+                        <img src="{% if new.image %}{{ new.image.url }}{% else %}
+                            {% static 'img/no_image.png' %}{% endif %}" alt="{{ new.title }}">
                         <h2><a href="{% url 'news:new_detail' new.id %}">{{ new.title }}</a> </h2>
                         <div>{{ new.content | truncatewords:10 }}</div>
                         <p class="text-right font-italic">{{ new.created }}</p>

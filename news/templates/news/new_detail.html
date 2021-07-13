@@ -8,7 +8,7 @@
     <div class="container-fluid mt-3">
         <div class="row">
             {% if new.image %}
-                <div class="col-md-auto"><img class="main-image" src="{{ new.image.url }}" alt=""></div>
+                <div class="col-md-auto"><img class="main-image" src="{{ new.image.url }}" alt="{{ new.title }}"></div>
             {% endif %}
             <div class="col">
                 <h1>{{ new.title }}</h1>

@@ -68,6 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -83,7 +84,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+                'django.template.context_processors.media',
                 'news.middlewares.gb_context_processor',
                 'cart.context_processors.cart',
             ],

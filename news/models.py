@@ -78,7 +78,7 @@ class New(models.Model):
     title = models.CharField(max_length=250, verbose_name='Заголовок')
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор')
-    image = models.ImageField(blank=True, upload_to=get_timestamp_path, verbose_name='Изображение')
+    image = models.ImageField(blank=True, upload_to='news/%Y/%m/%d', verbose_name='Изображение')
     content = models.TextField(verbose_name='Содержание')
     is_active = models.BooleanField(default=True, db_index=True, verbose_name='Выводить в списке?')
     publish = models.DateTimeField(default=timezone.now())
